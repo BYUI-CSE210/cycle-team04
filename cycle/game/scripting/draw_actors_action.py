@@ -27,6 +27,14 @@ class DrawActorsAction(Action):
             script (Script): The script of Actions in the game.
         """
 
-        self._video_service.clear_buffer()
+        score = cast.get_first_actor("scores")
+        segments = []
+        for cycle in cast.get_actors("cycles"):
+            segments += cycle.get_segments()
+        messages = cast.get_actors("messages")
 
+        self._video_service.clear_buffer()
+        self._video_service.draw_actors(segments)
+        self._video_service.draw_actor(score)
+        self._video_service.draw_actors(messages, True)
         self._video_service.flush_buffer()

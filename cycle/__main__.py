@@ -1,6 +1,8 @@
 import constants
 
 from game.casting.cast import Cast
+from game.casting.score import Score
+from game.casting.cycle import Cycle
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
@@ -17,6 +19,15 @@ def main():
 
     # create the cast
     cast = Cast()
+    cast.add_actor("cycles", Cycle(Point(int(constants.MAX_X/4),int(constants.MAX_Y/2))))
+    cast.add_actor("cycles", Cycle(Point(int((constants.MAX_X/4)*3),int(constants.MAX_Y/2))))
+    cast.add_actor("scores", Score())
+
+    cycles = cast.get_actors("cycles")
+
+    cycles[0].set_color(constants.GREEN)
+    
+    cycles[1].set_color(constants.RED)
 
     # start the game
     keyboard_service = KeyboardService()
