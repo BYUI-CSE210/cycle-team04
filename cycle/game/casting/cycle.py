@@ -19,10 +19,11 @@ class Cycle(Actor):
 
 
     def get_segments(self):
+        """Creating the segments """
         return self._segments
 
     def move_next(self):
-        # move all segments
+        """move all segments"""
         for segment in self._segments:
             segment.move_next()
         # update velocities
@@ -33,9 +34,11 @@ class Cycle(Actor):
             trailing.set_velocity(velocity)
 
     def get_head(self):
+        """Creating the Heads"""
         return self._segments[0]
 
     def grow_tail(self, number_of_segments):
+        """Growing the tail of the cycle"""
         for i in range(number_of_segments):
             tail = self._segments[-1]
             velocity = tail.get_velocity()
@@ -50,9 +53,11 @@ class Cycle(Actor):
             self._segments.append(segment)
 
     def turn_head(self, velocity):
+        """To turn the cycles's head"""
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
+        """Preparing th body of the snakes"""
         x = self._position.get_x()
         y = self._position.get_y()
 
@@ -69,6 +74,7 @@ class Cycle(Actor):
             self._segments.append(segment)
     
     def set_color(self, color):
+        """Setting the color of the snakes"""
         self._color = color
         for segment in self._segments:
             segment.set_color(color)
